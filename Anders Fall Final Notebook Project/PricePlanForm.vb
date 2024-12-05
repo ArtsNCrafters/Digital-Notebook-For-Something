@@ -6,6 +6,9 @@
     Dim dblPremium As Double = 10.75
     Dim user As String = SystemInformation.UserName
     Dim Plan As String
+    Dim dblSubTotal As Double
+    Dim dblTotal As Double
+    Dim dblTip As Double
     Private Sub PricePlanForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MsgBox("Here, you'll set up your app so that the price is just right for you!")
         MainForm.Enabled = False
@@ -18,21 +21,27 @@
 
     Private Sub rdbBasic_CheckedChanged(sender As Object, e As EventArgs) Handles rdbBasic.CheckedChanged
         If rdbBasic.Checked = True Then
-            lblPrice.Text = "Price:" & DBLbaseprice.ToString("C2")
+            dblSubTotal = DBLbaseprice
+            dblTotal = dblSubTotal + dblTip
+            lblPrice.Text = "Price:" & dblTotal.ToString("C2")
             Plan = "Basic"
         End If
     End Sub
 
     Private Sub rdbPro_CheckedChanged(sender As Object, e As EventArgs) Handles rdbPro.CheckedChanged
         If rdbPro.Checked = True Then
-            lblPrice.Text = "Price:" & (DBLbaseprice + dblPro).ToString("C2")
+            dblSubTotal = DBLbaseprice + dblPro
+            dblTotal = dblSubTotal + dblTip
+            lblPrice.Text = "Price:" & dblTotal.ToString("C2")
             Plan = "Pro"
         End If
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles rdbPremium.CheckedChanged
         If rdbPremium.Checked = True Then
-            lblPrice.Text = "Price:" & (DBLbaseprice + dblPremium).ToString("C2")
+            dblSubTotal = DBLbaseprice + dblPremium
+            dblTotal = dblSubTotal + dblTip
+            lblPrice.Text = "Price:" & dblTotal.ToString("C2")
             Plan = "Premium"
         End If
     End Sub
@@ -72,7 +81,10 @@
                 MsgBox("Please Make A Password! Once finished inputting your password in the Price Planner form, select the 'complete' button.")
                 btnPurchase.Text = "&Complete"
                 txtSetPass.Visible = True
+                Label1.Text = "Please Set A Password!"
                 Label2.Visible = True
+                TextBox1.Visible = False
+                Label3.Visible = False
                 check = True
                 Select Case Plan
                     Case "Pro"
@@ -85,6 +97,7 @@
             End If
             file.Close()
             If Plan = "Basic" Then
+                MainForm.Activate()
                 Me.Close()
             End If
         Else
@@ -93,11 +106,18 @@
             Dim password As String = txtSetPass.Text
             file.WriteLine(password)
             file.Close()
-
+            MainForm.Activate()
             Me.Close()
+
         End If
 
 
     End Sub
 
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+        Double.TryParse(TextBox1.Text, dblTip)
+        dblTotal = dblSubTotal + dblTip
+        lblPrice.Text = "Price: " & dblTotal.ToString("C2")
+    End Sub
 End Class

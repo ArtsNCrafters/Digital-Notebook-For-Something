@@ -89,57 +89,73 @@ Click me if u DARE......"
             MsgBox("It seems like you're new to this program, so let's get your Notebook price plan all sorted out!")
             Me.Visible = False
             PricePlanForm.Visible = True
+            passuccess = True
         End If
     End Sub
     Dim testvariable As Integer
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         If passuccess = True Then
+
             If lblPlan.Text = "Premium" Then
-                Dim fileReader As System.IO.StreamReader
-                fileReader =
-                My.Computer.FileSystem.OpenTextFileReader("C:\Users\" & user & "\yourpersonalnotebook.txt")
-                If Not lblPlan.Text = "Basic" Then
-                    fileReader.ReadLine()
-                    pass = fileReader.ReadLine()
-                Else
-                    pass = "ΣΣΣΣΣΣΣΣ۞۞۞۞۞۞۞ ۝ 	 ۝ 	 ۝ 	 ۝ 	 ۝ 	 ۝ 	ΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣlmao"
-                End If
-
-                fileReader.Close()
-                My.Computer.FileSystem.DeleteFile("C:\Users\" & user & "\yourpersonalnotebook.txt")
-
-                Dim filepath As String = "C:\Users\" & user & "\yourpersonalnotebook.txt"
-                If Not System.IO.File.Exists(filepath) Then
-                    System.IO.File.Create(filepath).Dispose()
-                End If
-
-                Dim file As System.IO.StreamWriter
-                file =
-    My.Computer.FileSystem.OpenTextFileWriter("C:\Users\" & user & "\yourpersonalnotebook.txt", True)
-
-                file.WriteLine(lblPlan.Text)
-                file.WriteLine(pass)
-                file.Close()
-                Dim current As String
-                Dim reader As System.IO.StreamReader
-                reader =
+                If afile.Exists("C:\Users\" & user & "\yourpersonalnotebook.txt") Then
+                    MsgBox("Autosaved!")
+                    Dim fileReader As System.IO.StreamReader
+                    fileReader =
             My.Computer.FileSystem.OpenTextFileReader("C:\Users\" & user & "\yourpersonalnotebook.txt")
-                Dim lines As Integer
-                Do While reader.EndOfStream = False
-                    current = reader.ReadLine()
-                    lines += 1
-                Loop
-                reader.Close()
-                file =
-    My.Computer.FileSystem.OpenTextFileWriter("C:\Users\" & user & "\yourpersonalnotebook.txt", True)
-                Dim writer As Integer
-                file.WriteLine(lines)
-                file.WriteLine(txtText.Text)
-                file.Close()
+                    If Not lblPlan.Text = "Basic" Then
+                        fileReader.ReadLine()
+                        pass = fileReader.ReadLine()
+                    Else
+                        pass = "ΣΣΣΣΣΣΣΣ۞۞۞۞۞۞۞ ۝ 	 ۝ 	 ۝ 	 ۝ 	 ۝ 	 ۝ 	ΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣlmao"
+                    End If
+
+                    fileReader.Close()
+                    My.Computer.FileSystem.DeleteFile("C:\Users\" & user & "\yourpersonalnotebook.txt")
+
+                    Dim filepath As String = "C:\Users\" & user & "\yourpersonalnotebook.txt"
+                    If Not System.IO.File.Exists(filepath) Then
+                        System.IO.File.Create(filepath).Dispose()
+                    End If
+
+                    Dim file As System.IO.StreamWriter
+                    file =
+My.Computer.FileSystem.OpenTextFileWriter("C:\Users\" & user & "\yourpersonalnotebook.txt", True)
+
+                    file.WriteLine(lblPlan.Text)
+                    file.WriteLine(pass)
+                    file.Close()
+                    Dim current As String
+                    Dim reader As System.IO.StreamReader
+                    reader =
+        My.Computer.FileSystem.OpenTextFileReader("C:\Users\" & user & "\yourpersonalnotebook.txt")
+                    Dim lines As Integer
+                    Do While reader.EndOfStream = False
+                        current = reader.ReadLine()
+                        lines += 1
+                    Loop
+                    reader.Close()
+                    file =
+My.Computer.FileSystem.OpenTextFileWriter("C:\Users\" & user & "\yourpersonalnotebook.txt", True)
+                    Dim writer As Integer
+                    file.WriteLine(lines)
+                    file.WriteLine(txtText.Text)
+                    file.Close()
+                Else
+
+                    MsgBox("Sorry, we couldn't find the file!")
+                    scaryform.picScary.Visible = False
+                    scaryform.Visible = True
+                    Me.Visible = False
+                    resetform.Visible = False
+                    UnregisteredHypercam2.Visible = False
+                    MsgBox("Maybe next time you shouldn't go deleting files during run time, " & user & ".")
+                    MsgBox("Resetting...")
+                End If
             End If
-        End If
-        Me.Close()
+
+            End If
+            Me.Close()
     End Sub
 
     Private Sub btnPasswordCheck_Click(sender As Object, e As EventArgs) Handles btnPasswordCheck.Click
@@ -218,6 +234,7 @@ Click me if u DARE......"
             file.WriteLine(lines)
             file.WriteLine(txtText.Text)
             file.Close()
+            MsgBox("Saved!")
         End If
     End Sub
 

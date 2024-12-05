@@ -5,7 +5,6 @@
         Dim height As Double = My.Computer.Screen.Bounds.Size.Height
         Size = New Size(width, height)
         picScary.Size = New Size(width, height)
-        sacretimer.Enabled = True
     End Sub
 
     Private Sub sacretimer_Tick(sender As Object, e As EventArgs) Handles sacretimer.Tick

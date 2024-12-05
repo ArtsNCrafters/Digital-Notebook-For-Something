@@ -10,5 +10,6 @@
 
     Private Sub lblYap_Click(sender As Object, e As EventArgs) Handles lblYap.Click
         scaryform.Visible = True
+        scaryform.sacretimer.Enabled = True
     End Sub
 End Class

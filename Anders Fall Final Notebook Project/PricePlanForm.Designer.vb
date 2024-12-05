@@ -32,6 +32,8 @@ Partial Class PricePlanForm
         Me.lblPrice = New System.Windows.Forms.Label()
         Me.txtSetPass = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.grpPlans.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -132,11 +134,29 @@ Partial Class PricePlanForm
         Me.Label2.Text = "Set Password:"
         Me.Label2.Visible = False
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(15, 123)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(68, 13)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Leave A Tip:"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(15, 140)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 7
+        '
         'PricePlanForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(374, 234)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtSetPass)
         Me.Controls.Add(Me.lblPrice)
@@ -144,8 +164,10 @@ Partial Class PricePlanForm
         Me.Controls.Add(Me.btnPurchase)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.grpPlans)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "PricePlanForm"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Digital Notebook Price Planner"
         Me.TopMost = True
         Me.grpPlans.ResumeLayout(False)
@@ -164,4 +186,6 @@ Partial Class PricePlanForm
     Friend WithEvents lblPrice As Label
     Friend WithEvents txtSetPass As TextBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class
